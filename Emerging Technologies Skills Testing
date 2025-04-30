@@ -1,0 +1,18 @@
+# Section 3: NLP and Topic Modeling
+import spacy
+from transformers import pipeline
+
+# Load model
+nlp = spacy.load("en_core_web_sm")
+
+# NER
+doc = nlp(text_data)
+for ent in doc.ents:
+    print(ent.text, ent.label_)
+
+# Text Summarization
+summarizer = pipeline("summarization")
+summary = summarizer(text_data, max_length=150, min_length=40, do_sample=False)
+print("Summary:", summary[0]['summary_text'])
+
+# Topic Modeling (LDA) and Classification – optional with `gensim`, `BERTopic`
