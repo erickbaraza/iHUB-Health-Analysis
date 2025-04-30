@@ -1,0 +1,17 @@
+# Section 2: Statistical Analysis
+import scipy.stats as stats
+
+# Descriptive Stats
+print(df.describe(include='all'))
+
+# Programming languages frequency
+df['language_column'].value_counts().plot(kind='bar')
+
+# T-Test
+t_stat, p_val = stats.ttest_1samp(df['training_sessions'], 2)
+print("T-stat:", t_stat, "P-value:", p_val)
+
+# Chi-square test
+contingency = pd.crosstab(df['perception'], df['course_design'])
+chi2, p, _, _ = stats.chi2_contingency(contingency)
+print("Chi2:", chi2, "P-value:", p)
